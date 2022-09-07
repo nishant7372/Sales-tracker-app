@@ -1,0 +1,115 @@
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  font-size: max(2rem, 17px);
+  gap: max(2rem, 17px);
+  padding: max(3.5rem, 29.75px);
+  color: white;
+}
+
+.signup-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.signup-form input {
+  height: max(2.5rem, 21.25px);
+  border-radius: 4px;
+  padding: max(0.5rem, 4.25px) max(8px, 1rem);
+  font-size: max(1.9rem, 16.15px);
+  border-width: 0px;
+  outline: 0;
+  -webkit-appearance: none;
+  box-shadow: none;
+  -moz-box-shadow: none;
+  -webkit-box-shadow: none;
+  background-color: rgba(255, 255, 255, 0);
+  color: white;
+}
+
+.signup-form .input {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+.signup-form span {
+  align-self: flex-start;
+}
+
+.form-container {
+  max-width: max(35rem, 297.5px);
+  min-width: max(32rem, 272px);
+  width: 22vw;
+  margin: max(5rem, 42.5px) auto;
+  margin-bottom: max(2rem, 17px);
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.05);
+  box-shadow: rgba(0, 0, 0, 0.65) 0px 25px 20px -20px;
+}
+
+.btn {
+  margin-top: max(0.5rem, 4.25px);
+  font-size: max(2rem, 17px);
+  padding: max(0.4rem, 3.4px) max(1rem, 8.5px);
+  border: none;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.disabled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.btn:hover {
+  background-color: green;
+  color: white;
+}
+
+.password-field {
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.06);
+}
+
+.password-field input {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-right: 0.2rem;
+}
+
+.password-field img {
+  padding: 0px max(1rem, 8.5px);
+  width: max(1.8rem, 14.85px);
+  height: max(2rem, 17px);
+  filter: invert(60%);
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error {
+  background-color: rgb(240, 47, 47);
+  border-radius: 4px;
+  font-size: max(1.6rem, 13.6px);
+  padding: max(0.4rem, 3.4px) max(0.4rem, 8.5px);
+}
+
+.lastLabel {
+  margin-bottom: max(0.5rem, 4.25px);
+}
+
+input::placeholder {
+  font-size: max(1.8rem, 15.3px);
+}
