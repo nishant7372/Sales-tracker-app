@@ -6,6 +6,8 @@ import { useCollection } from "../../hooks/useCollection";
 import { Fade, Slide } from "react-awesome-reveal";
 import PieChart from "./PieChart";
 import { useEffect, useState } from "react";
+import Confirm from "./Confirm";
+import { useFirestore } from "../../hooks/useFirestore";
 
 export default function Home() {
   const now = new Date();
@@ -15,6 +17,17 @@ export default function Home() {
   const [option, setOption] = useState("createdAt");
   const [order, setOrder] = useState("desc");
   const [query, setQuery] = useState(oneDayAgo);
+  const [activeId, setActiveId] = useState(null);
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  const { deleteDocument } = useFirestore("transactions");
+
+  const deleteDoc = (response, id) => {
+    if (response) {
+      deleteDocument(id);
+    }
+    setShowConfirm(false);
+  };
 
   const handleOptionChange = (e) => {
     setOption(e.target.value);
@@ -37,12 +50,15 @@ export default function Home() {
 
   let totalAmount = 0;
   let totalPayment = 0;
-  if (document) {
-    for (let i = 0; i < document.length; i++) {
-      totalPayment += Number(document[i].payment);
-      totalAmount += Number(document[i].amount);
+  function calcAmountandPayment() {
+    if (document) {
+      for (let i = 0; i < document.length; i++) {
+        totalPayment += Number(document[i].payment);
+        totalAmount += Number(document[i].amount);
+      }
     }
   }
+  calcAmountandPayment();
 
   return (
     <div className={styles[`main-container`]}>
@@ -80,7 +96,15 @@ export default function Home() {
         </Slide>
         {isPending && <div>Loading Transactions...</div>}
         {error && <div>{error}</div>}
-        <Fade>{document && <TransactionList document={document} />}</Fade>
+        <Fade>
+          {document && (
+            <TransactionList
+              document={document}
+              setActiveId={setActiveId}
+              setShowConfirm={setShowConfirm}
+            />
+          )}
+        </Fade>
       </div>
       <div className={styles["right-section"]}>
         <div>
@@ -90,6 +114,9 @@ export default function Home() {
           <PieChart totalAmount={totalAmount} totalPayment={totalPayment} />
         </div>
       </div>
+      <Fade duration={500} triggerOnce>
+        <>{showConfirm && <Confirm id={activeId} deleteDoc={deleteDoc} />}</>
+      </Fade>
     </div>
   );
 }

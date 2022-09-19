@@ -1,16 +1,18 @@
 import { useState } from "react";
 import styles from "./TransactionList.module.css";
-import PieChart from "./PieChart";
 import { Slide } from "react-awesome-reveal";
-import { useFirestore } from "../../hooks/useFirestore";
 import TransactionDetails from "./TransactionDetails";
 import { keyframes } from "@emotion/react";
-import { NavLink } from "react-router-dom";
 
-export default function TransactionList({ document }) {
+export default function TransactionList({
+  document,
+  setActiveId,
+  setShowConfirm,
+}) {
   const [showIndex, setShowIndex] = useState(-1);
-  const { deleteDocument } = useFirestore("transactions");
-  const handleClick = (index) => {
+
+  const handleClick = (index, id) => {
+    setActiveId(id);
     setShowIndex((prevIndex) => (prevIndex === index ? -1 : index));
   };
 
@@ -54,21 +56,24 @@ export default function TransactionList({ document }) {
               } ${
                 styles[showIndex !== index ? `card-border` : `card-noborder`]
               }`}
-              onClick={() => handleClick(index)}
             >
-              <div className={styles.name}>{doc.work}</div>
-              <div className={styles["right-section"]}>
+              <div
+                className={styles["list-content"]}
+                onClick={() => handleClick(index, doc.id)}
+              >
+                <div className={styles.name}>{doc.work}</div>
                 <div className={styles.amount}>
                   ₹ {doc.payment.padStart(1, 0)}
                 </div>
-                <div
-                  className={`${styles["cross"]} ${styles["deleteButton"]}`}
-                  onClick={() => deleteDocument(doc.id)}
-                >
-                  X
-                </div>
+              </div>
+              <div
+                className={styles["deleteButton"]}
+                onClick={() => setShowConfirm(true)}
+              >
+                X
               </div>
             </div>
+
             {showIndex === index && (
               <Slide
                 direction="down"

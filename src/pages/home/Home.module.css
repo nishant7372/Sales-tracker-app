@@ -1,5 +1,6 @@
 .main-container {
   width: 90vw;
+  position: relative;
   max-width: 130rem;
   min-width: max(32rem, 320px);
   display: flex;

@@ -8,7 +8,7 @@
   --p: 20;
   --b: 1rem;
   --c: rgb(241, 102, 27);
-  --w: 150px;
+  --w: 18rem;
 
   width: var(--w);
   aspect-ratio: 1;
@@ -19,6 +19,7 @@
   font-size: 25px;
   font-weight: bold;
   color: white;
+  cursor: pointer;
 }
 .pie:before,
 .pie:after {
@@ -49,12 +50,12 @@
     translateY(calc(50% - var(--w) / 2));
 }
 .animate {
-  animation: p 1s 0.5s both;
+  animation: p 1.3s 0.3s both;
 }
 
 @keyframes p {
   from {
-    --p: 0;
+    --p: -100;
   }
 }
 
