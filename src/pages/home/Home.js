@@ -23,6 +23,7 @@ export default function Home() {
   const { deleteDocument } = useFirestore("transactions");
 
   const deleteDoc = (response, id) => {
+    console.log(id);
     if (response) {
       deleteDocument(id);
     }

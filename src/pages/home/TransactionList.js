@@ -16,6 +16,11 @@ export default function TransactionList({
     setShowIndex((prevIndex) => (prevIndex === index ? -1 : index));
   };
 
+  const handleClickDelete = (id) => {
+    setShowConfirm(true);
+    setActiveId(id);
+  };
+
   const customAnimation1 = keyframes`
   from {
     opacity: 0;
@@ -68,7 +73,7 @@ export default function TransactionList({
               </div>
               <div
                 className={styles["deleteButton"]}
-                onClick={() => setShowConfirm(true)}
+                onClick={() => handleClickDelete(doc.id)}
               >
                 X
               </div>
