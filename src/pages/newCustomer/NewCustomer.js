@@ -14,7 +14,7 @@ import { useAuthContext } from "../../hooks/useAuthContext";
 import DataList from "./DataList";
 
 // Transition Import
-import { Fade, Slide } from "react-awesome-reveal";
+import { Slide } from "react-awesome-reveal";
 
 export default function NewCustomer() {
   const [name, setName] = useState("");

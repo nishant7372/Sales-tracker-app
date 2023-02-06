@@ -5,7 +5,7 @@ import TransactionList from "./TransactionList";
 import { useCollection } from "../../hooks/useCollection";
 import { Fade, Slide } from "react-awesome-reveal";
 import PieChart from "./PieChart";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Confirm from "./Confirm";
 import { useFirestore } from "../../hooks/useFirestore";
 
