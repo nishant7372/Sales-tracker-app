@@ -75,7 +75,7 @@ export default function TransactionList({
                 className={styles["deleteButton"]}
                 onClick={() => handleClickDelete(doc.id)}
               >
-                <i class="fa fa-trash" aria-hidden="true"></i>
+                <i className="fa fa-trash" aria-hidden="true"></i>
               </div>
             </div>
 

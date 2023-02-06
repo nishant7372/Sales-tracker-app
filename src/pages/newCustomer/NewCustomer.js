@@ -49,8 +49,7 @@ export default function NewCustomer() {
   ]);
 
   useEffect(() => {
-    console.log(response);
-    if (response.success == true) {
+    if (response.success) {
       setWork("");
       setAmount("");
       setPayment("");
@@ -75,6 +74,7 @@ export default function NewCustomer() {
               list="works"
               className={styles["input"]}
               type="text"
+              maxlength="50"
               placeholder="Work / Item Purchased"
               onChange={(e) => setWork(e.target.value)}
               value={work}
@@ -92,6 +92,7 @@ export default function NewCustomer() {
                 list="names"
                 className={styles["input"]}
                 type="text"
+                maxlength="25"
                 placeholder="Customer Name"
                 onChange={(e) => setName(e.target.value)}
                 value={name}
@@ -102,11 +103,10 @@ export default function NewCustomer() {
               <input
                 className={styles["input"]}
                 min="1000000000"
-                max="9999999999"
                 type="number"
                 placeholder="Mobile No."
                 onChange={(e) => setNumber(e.target.value)}
-                value={number}
+                value={number.slice(0, 10)}
               />
               {document && name.length > 0 && (
                 <DataList document={document} id="names" param="name" />
@@ -119,11 +119,12 @@ export default function NewCustomer() {
               <span>Amount</span>
               <input
                 className={styles["input"]}
-                type={"number"}
+                type="number"
+                max="9999999999.00"
                 min="1.00"
                 placeholder="Amount"
                 onChange={(e) => setAmount(e.target.value)}
-                value={amount}
+                value={amount.slice(0, 10)}
                 required
               />
             </label>
@@ -136,7 +137,7 @@ export default function NewCustomer() {
                 max={amount}
                 placeholder="Payment"
                 onChange={(e) => setPayment(e.target.value)}
-                value={payment}
+                value={payment.slice(0, amount.length)}
               />
             </label>
           </div>

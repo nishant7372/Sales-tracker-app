@@ -19,7 +19,15 @@ export default function PieChart({ totalAmount, totalPayment }) {
           <div
             className={`${styles[`pie`]} ${styles[`animate`]}`}
             style={{ ["--p"]: paid, ["--c"]: `rgb(2,157,2)` }}
-            onMouseEnter={() => setA(`₹ ${totalPayment}`)}
+            onMouseEnter={() =>
+              setA(
+                `₹ ${
+                  String(totalPayment).length > 7
+                    ? String(totalPayment).slice(0, 7) + "..."
+                    : totalPayment
+                }`
+              )
+            }
             onMouseLeave={() => setA(`${paid.toFixed(1)} %`)}
           >
             {a}
@@ -32,7 +40,15 @@ export default function PieChart({ totalAmount, totalPayment }) {
           <div
             className={`${styles[`pie`]} ${styles[`animate`]}`}
             style={{ ["--p"]: pending, ["--c"]: "#FF2400" }}
-            onMouseEnter={() => setB(`₹ ${totalAmount - totalPayment}`)}
+            onMouseEnter={() =>
+              setB(
+                `₹ ${
+                  String(totalAmount - totalPayment).length > 7
+                    ? String(totalAmount - totalPayment).slice(0, 7) + "..."
+                    : totalAmount - totalPayment
+                }`
+              )
+            }
             onMouseLeave={() => setB(`${pending.toFixed(1)} %`)}
           >
             {b}
