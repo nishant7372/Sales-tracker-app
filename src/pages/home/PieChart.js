@@ -1,5 +1,6 @@
 import styles from "./PieChart.module.css";
 import { useEffect, useState } from "react";
+
 export default function PieChart({ totalAmount, totalPayment }) {
   const paid = (totalPayment / totalAmount) * 100;
   const pending = ((totalAmount - totalPayment) / totalAmount) * 100;
