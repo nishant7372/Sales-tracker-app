@@ -33,7 +33,7 @@ export default function LogIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login(email, password);
+    login(email.trim(), password.trim());
   };
 
   return (
