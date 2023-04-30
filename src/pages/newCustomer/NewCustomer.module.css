@@ -21,7 +21,6 @@
   font-size: max(1.9rem, 16.15px);
   border-width: 0px;
   outline: 0;
-  -webkit-appearance: none;
   box-shadow: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
@@ -40,7 +39,7 @@
   position: relative;
   max-width: max(65rem, 297.5px);
   min-width: max(32rem, 272px);
-  width: 50vw;
+  width: 70vw;
   margin: max(5rem, 42.5px) auto;
   margin-bottom: max(2rem, 17px);
   border-radius: 6px;
@@ -94,6 +93,7 @@ input::-webkit-inner-spin-button {
 
 input[type="number"] {
   -moz-appearance: textfield;
+  appearance: textfield;
 }
 
 @media only screen and (max-width: 750px) {
@@ -140,4 +140,14 @@ input[type="number"] {
   font-weight: 600;
   color: white;
   background-color: rgba(255, 0, 0, 0.8);
+}
+
+.done-checkbox {
+  cursor: pointer;
+}
+
+.payment-label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
