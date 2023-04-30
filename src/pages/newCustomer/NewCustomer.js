@@ -22,19 +22,36 @@ export default function NewCustomer() {
   const [amount, setAmount] = useState("");
   const [payment, setPayment] = useState("");
   const [number, setNumber] = useState("");
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const { user } = useAuthContext();
   const { addDocument, response } = useFirestore("transactions");
 
+  const toSentenceCase = (str) => {
+    const sentences = str.toLowerCase().split(" ");
+
+    const sentenceCase = sentences
+      .map((sentence) => {
+        return sentence.charAt(0).toUpperCase() + sentence.slice(1);
+      })
+      .join(" ");
+
+    return sentenceCase;
+  };
+
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsButtonDisabled(true);
+    setTimeout(() => {
+      setIsButtonDisabled(false);
+    }, 1000);
     addDocument({
-      name: name,
+      name: name.trim(),
       mobileNumber: number,
-      work: work,
-      amount: Number(amount),
-      payment: payment,
+      work: work.trim(),
+      amount: +amount,
+      payment,
       uid: user.uid,
     });
   };
@@ -42,11 +59,15 @@ export default function NewCustomer() {
   const handleClose = () => {
     navigate("/");
   };
-  const { document, isPending, error } = useCollection("transactions", [
-    "uid",
-    "==",
-    user.uid,
-  ]);
+
+  const handleCheckBox = (e) => {
+    if (e.target.checked) {
+      setPayment(amount);
+    } else {
+      setPayment("");
+    }
+  };
+  const { document } = useCollection("transactions", ["uid", "==", user.uid]);
 
   useEffect(() => {
     if (response.success) {
@@ -67,16 +88,16 @@ export default function NewCustomer() {
           X{" "}
         </button>
         <form className={styles["customer-form"]} onSubmit={handleSubmit}>
-          <h2>💁 new customer</h2>
+          <h2>💰 new transaction</h2>
           <label>
             <span>Work / Item Purchased</span>
             <input
               list="works"
               className={styles["input"]}
               type="text"
-              maxlength="50"
+              maxLength="30"
               placeholder="Work / Item Purchased"
-              onChange={(e) => setWork(e.target.value)}
+              onChange={(e) => setWork(toSentenceCase(e.target.value))}
               value={work}
               required
               autoFocus
@@ -92,9 +113,9 @@ export default function NewCustomer() {
                 list="names"
                 className={styles["input"]}
                 type="text"
-                maxlength="25"
+                maxLength="25"
                 placeholder="Customer Name"
-                onChange={(e) => setName(e.target.value)}
+                onChange={(e) => setName(toSentenceCase(e.target.value))}
                 value={name}
               />
             </label>
@@ -120,7 +141,7 @@ export default function NewCustomer() {
               <input
                 className={styles["input"]}
                 type="number"
-                max="9999999999.00"
+                max="9999999.00"
                 min="1.00"
                 placeholder="Amount"
                 onChange={(e) => setAmount(e.target.value)}
@@ -129,7 +150,15 @@ export default function NewCustomer() {
               />
             </label>
             <label>
-              <span>Payment</span>
+              <span className={styles["payment-label"]}>
+                Payment{" "}
+                <input
+                  title="payment done?"
+                  className={styles["done-checkbox"]}
+                  type="checkbox"
+                  onClick={handleCheckBox}
+                />{" "}
+              </span>
               <input
                 className={styles["input"]}
                 type="number"
@@ -141,7 +170,9 @@ export default function NewCustomer() {
               />
             </label>
           </div>
-          <button className={styles.btn}>Add</button>
+          <button className={styles["btn"]} disabled={isButtonDisabled}>
+            Add
+          </button>
         </form>
       </div>
     </Slide>
