@@ -13,7 +13,7 @@ export default function SignUp() {
   const { signup, error, isPending } = useSignup();
 
   const showPassword = () => {
-    if (passwordType == "password") {
+    if (passwordType === "password") {
       setPasswordType("text");
     } else {
       setPasswordType("password");
@@ -71,6 +71,7 @@ export default function SignUp() {
                 <img
                   src={require(`../../img/eye-${passwordType}.png`)}
                   onClick={showPassword}
+                  alt="eye-toggle"
                 />
               </div>
             </div>

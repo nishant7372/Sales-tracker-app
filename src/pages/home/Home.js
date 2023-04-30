@@ -4,7 +4,7 @@ import styles from "./Home.module.css";
 import TransactionList from "./TransactionList";
 import { useCollection } from "../../hooks/useCollection";
 import { Fade, Slide } from "react-awesome-reveal";
-import PieChart from "./PieChart";
+import PieChart from "../../Components/Charts/PieChart";
 import { useState } from "react";
 import Confirm from "./Confirm";
 import { useFirestore } from "../../hooks/useFirestore";

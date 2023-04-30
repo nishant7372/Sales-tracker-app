@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { projectFireStore } from "../firebase/config";
-import { type } from "@testing-library/user-event/dist/type";
 
 export const useCollection = (
   collection,
@@ -78,7 +77,7 @@ export const useCollection = (
 
     //unsubscribe on unmount
     return () => unsubscribe();
-  }, [collection, query, order, option, timeQuery, groupBy]);
+  }, [collection, query, order, option, timeQuery, groupBy, compare]);
 
   return { document, isPending, error };
 };

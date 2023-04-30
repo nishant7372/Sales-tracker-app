@@ -1,5 +1,4 @@
 import styles from "./NavBar.module.css";
-import "./NavBar.css";
 import { NavLink, Link } from "react-router-dom";
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
@@ -28,6 +27,14 @@ export default function NavBar() {
 
         {!user && (
           <div className={styles["nav-right-noauth"]}>
+            <div className={styles["github"]}>
+              <a
+                className="fa-brands fa-github"
+                href="https://github.com/nishant7372/tvmaze"
+              >
+                {""}
+              </a>
+            </div>
             <NavLink to="/login" className={styles["log-btn"]}>
               LogIn
             </NavLink>
@@ -39,10 +46,18 @@ export default function NavBar() {
 
         {user && (
           <div className={styles["nav-right-auth"]}>
+            <div className={styles["github"]}>
+              <a
+                title="github"
+                className="fa-brands fa-github"
+                href="https://github.com/nishant7372/sales-tracker-app"
+              >
+                {""}
+              </a>
+            </div>
             <div title={user.displayName} className={styles["userNameLogo"]}>
               {getFirstLetters(user.displayName)}
             </div>
-
             <div className={styles["log-btn"]} onClick={logout}>
               Logout
             </div>

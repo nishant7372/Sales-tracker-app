@@ -1,5 +1,5 @@
 // CSS Styles
-import styles from "./NewCustomer.module.css";
+import styles from "./NewTransaction.module.css";
 
 //React Imports
 import { useEffect, useState } from "react";
@@ -16,7 +16,7 @@ import DataList from "./DataList";
 // Transition Import
 import { Slide } from "react-awesome-reveal";
 
-export default function NewCustomer() {
+export default function NewTransaction() {
   const [name, setName] = useState("");
   const [work, setWork] = useState("");
   const [amount, setAmount] = useState("");
@@ -78,6 +78,7 @@ export default function NewCustomer() {
       setNumber("");
       navigate("/");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [response.success]);
 
   return (

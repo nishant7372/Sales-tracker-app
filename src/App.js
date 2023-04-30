@@ -10,7 +10,8 @@ import Home from "./pages/home/Home";
 import LogIn from "./pages/login/LogIn";
 import SignUp from "./pages/signup/SignUp";
 import NavBar from "./Components/NavBar/NavBar";
-import NewCustomer from "./pages/newCustomer/NewCustomer";
+import NewTransaction from "./pages/newTransaction/NewTransaction";
+import NotFound from "./pages/Error/notFound";
 
 import { useAuthContext } from "./hooks/useAuthContext";
 
@@ -37,9 +38,9 @@ function App() {
             />
             <Route
               path="/new"
-              element={!user ? <Navigate to="/login" /> : <NewCustomer />}
+              element={!user ? <Navigate to="/login" /> : <NewTransaction />}
             />
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
       )}

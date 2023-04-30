@@ -19,7 +19,7 @@ export default function PieChart({ totalAmount, totalPayment }) {
         <div className={styles["flex-col"]}>
           <div
             className={`${styles[`pie`]} ${styles[`animate`]}`}
-            style={{ ["--p"]: paid, ["--c"]: `rgb(2,157,2)` }}
+            style={{ "--p": paid, "--c": `rgb(2,157,2)` }}
             onMouseEnter={() =>
               setA(
                 `₹ ${
@@ -40,7 +40,7 @@ export default function PieChart({ totalAmount, totalPayment }) {
         <div className={styles["flex-col"]}>
           <div
             className={`${styles[`pie`]} ${styles[`animate`]}`}
-            style={{ ["--p"]: pending, ["--c"]: "#FF2400" }}
+            style={{ "--p": pending, "--c": "#FF2400" }}
             onMouseEnter={() =>
               setB(
                 `₹ ${
