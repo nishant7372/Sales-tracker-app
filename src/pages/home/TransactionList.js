@@ -51,6 +51,11 @@ export default function TransactionList({
         styles[document.length === 0 ? `no-padding` : ``]
       }`}
     >
+      {document.length === 0 && (
+        <div className={styles["no-items-found"]}>
+          No transactions in last 24 hrs.
+        </div>
+      )}
       {document.map((doc, index) => (
         <Slide cascade key={doc.id} keyframes={customAnimation2}>
           <li key={doc.id}>
