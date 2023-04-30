@@ -1,30 +1,12 @@
 import styles from "./NavBar.module.css";
 import "./NavBar.css";
 import { NavLink, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
 
 export default function NavBar() {
-  const navColors = ["green"];
-  const [index, setIndex] = useState(0);
-
   const { logout } = useLogout();
   const { user } = useAuthContext();
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prevIndex) => {
-        return prevIndex == navColors.length - 1 ? 0 : prevIndex + 1;
-      });
-    }, 3000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const parseUserName = (name) => {
-    if (name.indexOf(" ") != -1) return name.substring(0, name.indexOf(" "));
-    else return name;
-  };
 
   const getFirstLetters = (name) => {
     const arr = name.split(" ");
