@@ -1,6 +1,6 @@
 import styles from "./NavBar.module.css";
 import "./NavBar.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
@@ -26,40 +26,46 @@ export default function NavBar() {
     else return name;
   };
 
+  const getFirstLetters = (name) => {
+    const arr = name.split(" ");
+    let s = "";
+    for (const x of arr) {
+      s += x[0];
+    }
+    return s;
+  };
+
   return (
-    <div
-      className={`${styles["nav-container"]} ${navColors[index]} ${styles.sticky}`}
-    >
-      <div className={styles.navbar}>
-        <div className={styles.leftSection}>
-          <img src={require("../../img/logo.png")} />
-          <div className={styles.name}>Sales Tracker</div>
+    <div className={`${styles["nav-container"]} ${styles["sticky"]}`}>
+      <div className={styles["navbar"]}>
+        <div className={styles["nav-left"]}>
+          <Link to="/" className={styles["app-name"]}>
+            Sales Tracker
+          </Link>
         </div>
-        <div className={styles["rightSection"]}>
-          {!user && (
-            <>
-              <NavLink className={`font-${navColors[index]}`} to="/login">
-                LogIn
-              </NavLink>
-              <NavLink className={`font-${navColors[index]}`} to="/signup">
-                SignUp
-              </NavLink>
-            </>
-          )}
-          {user && (
-            <>
-              <div className={styles.userName}>
-                Hello, {parseUserName(user.displayName)}
-              </div>
-              <div
-                className={`${styles[`btn`]} font-${navColors[index]}`}
-                onClick={logout}
-              >
-                LogOut
-              </div>
-            </>
-          )}
-        </div>
+
+        {!user && (
+          <div className={styles["nav-right-noauth"]}>
+            <NavLink to="/login" className={styles["log-btn"]}>
+              LogIn
+            </NavLink>
+            <NavLink to="/signup" className={styles["log-btn"]}>
+              SignUp
+            </NavLink>
+          </div>
+        )}
+
+        {user && (
+          <div className={styles["nav-right-auth"]}>
+            <div title={user.displayName} className={styles["userNameLogo"]}>
+              {getFirstLetters(user.displayName)}
+            </div>
+
+            <div className={styles["log-btn"]} onClick={logout}>
+              Logout
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
