@@ -13,7 +13,7 @@ export default function NavBar() {
     for (const x of arr) {
       s += x[0];
     }
-    return s;
+    return s.substring(0, Math.min(2, s.length));
   };
 
   return (
